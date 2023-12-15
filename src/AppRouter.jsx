@@ -3,7 +3,8 @@ import { Login } from "./pages/Login";
 import { Roles } from "./pages/Roles";
 import "./AppRouter.css";
 import { AdminRoute } from "./Routes/Admin/AdminRoute";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Role } from "./pages/Role";
 
 const router = createBrowserRouter([
   /*Para crear rutas una vez generado el .jsx dupliquen la estructura indicando el path y realicen la importación correspondiente
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/roles",
     element: <Roles />,
+  },
+  {
+    path: "/role/:id",
+    element: <Role />,
   },
 ]);
 
