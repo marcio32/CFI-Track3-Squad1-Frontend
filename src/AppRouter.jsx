@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Login from "./pages/Login";
+import { Login } from "./components/login/Login";
 import "./AppRouter.css";
+import { AuthProvider } from "./auth/AuthContext";
 
 const router = createBrowserRouter([
   /*Para crear rutas una vez generado el .jsx dupliquen la estructura indicando el path y realicen la importación correspondiente
@@ -10,7 +11,7 @@ const router = createBrowserRouter([
   },
   */
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
   },
 ]);
@@ -18,7 +19,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
+      <AuthProvider>
       <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }
