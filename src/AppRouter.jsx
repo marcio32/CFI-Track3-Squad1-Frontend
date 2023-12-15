@@ -1,5 +1,9 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Login } from "./pages/Login";
+
+import { Login } from "./components/login/Login";
+import "./AppRouter.css";
+import { AuthProvider } from "./auth/AuthContext";
+
 import { Roles } from "./pages/Roles";
 import "./AppRouter.css";
 import { AdminRoute } from "./Routes/Admin/AdminRoute";
@@ -15,6 +19,7 @@ const router = createBrowserRouter([
   */
   {
     path: "/",
+
     element: <AdminRoute />,
   },
   {
@@ -30,7 +35,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }
