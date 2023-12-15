@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "./pages/Login";
+import { Roles } from "./pages/Roles";
 import "./AppRouter.css";
 import { AdminRoute } from "./Routes/Admin/AdminRoute";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <AdminRoute />,
+  },
+  {
+    path: "/roles",
+    element: <Roles />,
   },
 ]);
 
