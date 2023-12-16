@@ -1,6 +1,4 @@
-export const JwtAtob = (token ) => {
-    if (token.logged && token.logged !== false) {
-        const decodePayload = JSON.parse(atob(token.split(".")[1]));
-        return decodePayload;
-      }
+export const JwtAtob = (token) => {
+  const decodePayload = JSON.parse(atob(token.split(".")[1]));
+  return decodePayload;
 }
