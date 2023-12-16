@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { getUsers } from "../../selectors/getUser.mjs";
-import { Button, Card, CardBody, CardTitle } from "react-bootstrap";
+import { getUsers } from "../../selectors/userServices.mjs";
+import { Button, Card, } from "react-bootstrap";
 import AvatarIcon from '../../assets/vector-profile-line-black-icon.jpg'
 import './adminRoute.css'
 
