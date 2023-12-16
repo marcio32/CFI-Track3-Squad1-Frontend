@@ -11,16 +11,19 @@ export const useUser = () => {
     const login = useCallback(async (userData) => {
         try {
             const response = await LoginServices(userData);
-            const { data } = response;
+            const { data } = response || {};
 
-            window.localStorage.setItem('jwt', JSON.stringify(data));
+            window.localStorage.setItem('isLogged', JSON.stringify(data));
 
             dispatch({
-                jwt : data
+                type: types.login,
+                payload: {
+                    jwt: data,
+                }
             })
         }
         catch (error) {
-            window.localStorage.removeItem('jwt');
+            window.localStorage.removeItem('isLogged');
             if (error.response && error.response.status == 401) {
                 setIsLoading({ loading: true, error: true, status: 401 })
             } else {
@@ -30,7 +33,7 @@ export const useUser = () => {
     }, [dispatch])
 
     const logout = useCallback(() => {
-        window.localStorage.removeItem('jwt');
+        window.localStorage.removeItem('isLogged');
         dispatch({ type: types.logout })
     }, [dispatch])
 
