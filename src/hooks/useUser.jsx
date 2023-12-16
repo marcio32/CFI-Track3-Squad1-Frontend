@@ -16,6 +16,7 @@ export const useUser = () => {
             window.localStorage.setItem('jwt', JSON.stringify(data));
 
             dispatch({
+                logged : true,
                 jwt : data
             })
         }

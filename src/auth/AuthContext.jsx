@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('jwt', JSON.stringify(jwt));
     if(jwt) {
       setUserData(JwtAtob(jwt))
+      
     }
   }, [jwt]);
 
