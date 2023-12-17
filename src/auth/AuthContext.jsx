@@ -3,22 +3,21 @@ import { AuthReducer } from "./AuthReducer";
 import { JwtAtob } from '../helpers/JwtAtob.mjs'
 
 const init = () => {
-  return JSON.parse(localStorage.getItem('jwt')) || { logged : false} ;
-};
+  return JSON.parse(localStorage.getItem('isLogged')) || { logged : false }};
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
 
   const [ userData, setUserData ] = useState('');
-  const [jwt, dispatch] = useReducer(AuthReducer, {}, init)
+  const [isLogged, dispatch] = useReducer(AuthReducer, {}, init)
 
   useEffect(() => {
-    localStorage.setItem('jwt', JSON.stringify(jwt));
-    if(jwt) {
-      setUserData(JwtAtob(jwt))
+    localStorage.setItem('isLogged', JSON.stringify(isLogged));
+    if(isLogged.jwt) {
+      setUserData(JwtAtob(isLogged.jwt));
     }
-  }, [jwt]);
+  }, [isLogged]);
 
   return <AuthContext.Provider value={{ userData, dispatch }}>
     {children}

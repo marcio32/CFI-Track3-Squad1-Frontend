@@ -1,40 +1,33 @@
-import { useEffect, useState } from "react"
-import { getUsers } from "../../selectors/getUser.mjs";
-import { Button, Card, CardBody, CardTitle } from "react-bootstrap";
-import AvatarIcon from '../../assets/vector-profile-line-black-icon.jpg'
+import { useState } from 'react'
+import { Button } from 'react-bootstrap';
+
+import { Users } from '../../pages/Users';
+import { Accounts } from '../../pages/Accounts';
+
 import './adminRoute.css'
+
 
 export const AdminRoute = () => {
 
-    const [users, setUsers] = useState([]);
-    const [hasError, setHasError] = useState(false)
+    const [isUserSelected, setIsUserSelected ] = useState(true);
 
-    useEffect(() => {
-        getUsers()
-            .then(data =>
-                setUsers(data)
-            )
-            .catch(err => {
-                setHasError(true);
-            })
-    }, [])
+    const handleSelectAccounts = () => {
+        setIsUserSelected(false)
+    }
+
+    const handleSelectUsers = () => {
+        setIsUserSelected(true)
+    }
 
     return (
         <>
-            <h1> Bienvenido Admin </h1>
-            <section className="users-card">
-                {users.length > 0 && users.map((user, index) => (
-                    <Card key={index}>
-                        <Card.Img variant="top" src={AvatarIcon} />
-                        <Card.Body>
-                            <Card.Title> {user.firstName + ' ' + user.lastName}</Card.Title>
-                            <Card.Text> {user.email}</Card.Text>
-                            <Card.Text> {user.role.name}</Card.Text>
-                            <Button variant="danger">Eliminar</Button>
-                        </Card.Body>
-                    </Card>
-                ))}
+        <main className='admin-page-main'>
+            <section className='select-page-btn-group'>
+                <Button onClick={handleSelectUsers}> Usuarios </Button>
+                <Button onClick={handleSelectAccounts}> Cuentas </Button>
             </section>
+            { isUserSelected ? <Users/> : <Accounts/> }
+        </main>
         </>
     )
 }
