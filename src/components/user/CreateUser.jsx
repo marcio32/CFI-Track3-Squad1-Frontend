@@ -7,7 +7,7 @@ export const CreateUser = () => {
     lastName: "",
     password: "",
     email: "",
-    roleId: 2,
+    roleId: 3,
   });
 
   const onFormChange = (e) => {
@@ -23,7 +23,7 @@ export const CreateUser = () => {
         lastName: "",
         password: "",
         email: "",
-        roleId: 2,
+        roleId: 3,
       });
       alert("Cuenta creada.");
     } catch (error) {
