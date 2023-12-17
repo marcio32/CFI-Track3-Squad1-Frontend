@@ -4,12 +4,13 @@ import { AuthContext } from "../auth/AuthContext";
 import { Layout } from "../components/layout/Layout";
 import { Login } from "../components/login/Login";
 import { AdminRoutes } from './Admin/AdminRoutes';
-import { CreateUser } from '../components/user/CreateUser'
 import { UserDashboard } from "./Private/UserDashboard";
+import { CreateUser } from "../components/user/CreateUser";
+import { Deposit } from "../components/account/Deposit";
 
 function AppRouter() {
   const { isLogged, userData } = useContext(AuthContext)
-  console.log(userData)
+
   const router = createBrowserRouter([
 
     {
@@ -25,9 +26,17 @@ function AppRouter() {
           Component: Login
         },
         {
+          path: "/dashboard",
+          Component: UserDashboard,
+        },
+        {
           path: "/register",
-          Component: CreateUser,
-        }, 
+          Component: CreateUser
+        },
+        {
+          path:"/depositar",
+          Component: Deposit
+        },
         {
           path: "/admin",
           Component: AdminRoutes
