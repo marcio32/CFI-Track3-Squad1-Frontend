@@ -3,6 +3,7 @@ import { AuthContext, AuthProvider } from "./auth/AuthContext";
 import { useContext } from "react";
 
 import { Login } from "./components/login/Login";
+import { UserMain } from "./components/user/UserMain";
 import { CustomNav } from "./components/navBar/Navbar";
 import { CreateUser } from "./components/user/CreateUser";
 import { AdminRoute } from "./Routes/Admin/AdminRoute";
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: Login,
+  },
+  {
+    path: "/user",
+    Component: UserMain,
   },
   {
     path: "/register",
