@@ -1,16 +1,14 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { AuthContext, AuthProvider } from "./auth/AuthContext";
+import { useContext } from "react";
 
 import { Login } from "./components/login/Login";
-import "./AppRouter.css";
-import { AuthContext, AuthProvider } from "./auth/AuthContext";
-
-import { Roles } from "./pages/Roles";
-import "./AppRouter.css";
-import { AdminRoute } from "./Routes/Admin/AdminRoute";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Role } from "./pages/Role";
-import { useContext } from "react";
 import { CreateUser } from "./components/user/CreateUser";
+import { AdminRoute } from "./Routes/Admin/AdminRoute";
+import { Roles } from "./pages/Roles";
+import { Role } from "./pages/Role";
+import "./AppRouter.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const router = createBrowserRouter([
   /*Para crear rutas una vez generado el .jsx dupliquen la estructura indicando el path y realicen la importación correspondiente
@@ -29,22 +27,16 @@ const router = createBrowserRouter([
     element: <CreateUser />,
   },
   /*{
-    
     path: "post/createAccount",  Como usuario standard quiero crear una cuenta
     element: <Crear cuenta>
-    
   },
   {
-    
     path: "post/depositar",  Como usuario standard quiero depositar dinero a mi cuenta
-    element: <Depositar>
-    
+    element: <Depositar> 
   },
   {
-  
     path: "post/transferir",  Como usuario standard quiero transferir dinero a otra cuenta
-    element: <Transferir>
-    
+    element: <Transferir> 
   },*/
   {
     path: "/admin",
@@ -61,23 +53,17 @@ const router = createBrowserRouter([
   },
   /*
   {
-    
     path: "get/accounts",  Como administrador quiero ver todas las cuentas
     element: <ver account>
      añadir cuentas en el detalle del usuario para simplicar las pestañas
-    
   },
   {
-    
     path: "deletet/eliminarCuenta",  Como administrador quiero eliminar una cuenta
     element: <Eliminar cuenta>
-    
   },
   {
-    
     path: "put/editarCuenta", Como administrador quiero editar una cuenta
     element: <Editar Cuenta>
-   
 },*/
 ]);
 
