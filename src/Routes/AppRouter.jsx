@@ -8,9 +8,7 @@ import { CreateUser } from '../components/user/CreateUser'
 import { UserDashboard } from "./Private/UserDashboard";
 
 function AppRouter() {
-  const authContext = useContext(AuthContext);
-
-  const { isLogged, userData } = authContext;
+  const { isLogged, userData } = useContext(AuthContext)
   console.log(userData)
   const router = createBrowserRouter([
 
@@ -31,7 +29,7 @@ function AppRouter() {
           Component: CreateUser,
         }, 
         {
-          path: "admin",
+          path: "/admin",
           Component: AdminRoutes
         }
       ]

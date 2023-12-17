@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export const UpdateUser = (userId) => {
+  //falta traer la data del user
   const [userData, setUserData] = useState({ state: null });
 
   const onFormChange = (e) => {

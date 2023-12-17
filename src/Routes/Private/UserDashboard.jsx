@@ -1,5 +1,7 @@
+import { UserMain } from "../../components/user/UserMain"
+
 export const UserDashboard = () => {
     return(
-        <h1> Estas en las rutas de usuarios</h1>
+        <UserMain/>
     )
 }

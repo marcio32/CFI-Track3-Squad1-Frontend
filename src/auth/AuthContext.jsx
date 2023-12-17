@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       setUserData(JwtAtob(isLogged.jwt));
     }
   }, [isLogged]);
-  
+
   return <AuthContext.Provider value={{ userData, dispatch, isLogged }}>
     {children}
   </AuthContext.Provider>
