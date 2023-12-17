@@ -1,8 +1,13 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Login } from "./pages/Login";
+
+import { Login } from "./components/login/Login";
+import "./AppRouter.css";
+import { AuthProvider } from "./auth/AuthContext";
+
 import "./AppRouter.css";
 import { AdminRoute } from "./Routes/Admin/AdminRoute";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const router = createBrowserRouter([
   /*Para crear rutas una vez generado el .jsx dupliquen la estructura indicando el path y realicen la importación correspondiente
@@ -13,6 +18,7 @@ const router = createBrowserRouter([
   */
   {
     path: "/",
+
     element: <AdminRoute />,
   },
 ]);
@@ -20,7 +26,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
+      <AuthProvider>
       <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }
