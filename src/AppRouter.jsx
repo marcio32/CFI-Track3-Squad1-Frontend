@@ -10,7 +10,7 @@ import { AdminRoute } from "./Routes/Admin/AdminRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Role } from "./pages/Role";
 import { useContext } from "react";
-import { CreateUser } from "./components/createUser/CreateUser";
+import { CreateUser } from "./components/user/CreateUser";
 
 const router = createBrowserRouter([
   /*Para crear rutas una vez generado el .jsx dupliquen la estructura indicando el path y realicen la importación correspondiente
