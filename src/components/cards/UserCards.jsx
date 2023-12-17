@@ -9,7 +9,6 @@ export const UserCard = ({ user, onSelectUser, onShowDescription }) => {
             <Card.Body>
                 <Card.Title> {user.firstName + ' ' + user.lastName}</Card.Title>
                 <Card.Text> {user.email}</Card.Text>
-                <Card.Text> {user.role.name}</Card.Text>
                 <Button variant="info" onClick={() => onShowDescription(user.id)}> Informacion
                 </Button>
                 <Button variant="danger" onClick={() => onSelectUser(user)}> Baja
