@@ -10,67 +10,27 @@ import { Role } from "./pages/Role";
 import "./AppRouter.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const router = createBrowserRouter([
-  /*Para crear rutas una vez generado el .jsx dupliquen la estructura indicando el path y realicen la importación correspondiente
-  {
-    path: "/ejemplo",
-    element: <Ejemplo />,
-  },
-  */
-  {
-    path: "/",
+import { Role } from "./pages/Role";
+import { useContext } from "react";
+import { CreateUser } from "./components/createUser/CreateUser";
+import { CustomNav } from "./components/navBar/Navbar";
 
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <CreateUser />,
-  },
-  /*{
-    path: "post/createAccount",  Como usuario standard quiero crear una cuenta
-    element: <Crear cuenta>
-  },
-  {
-    path: "post/depositar",  Como usuario standard quiero depositar dinero a mi cuenta
-    element: <Depositar> 
-  },
-  {
-    path: "post/transferir",  Como usuario standard quiero transferir dinero a otra cuenta
-    element: <Transferir> 
-  },*/
-  {
-    path: "/admin",
-    element: <AdminRoute />,
-    // agregar eliminacion de usuario y vista activos/ inactivos
-  },
-  {
-    path: "/roles",
-    element: <Roles />,
-  },
-  {
-    path: "/role/:id",
-    element: <Role />,
-  },
-  /*
-  {
-    path: "get/accounts",  Como administrador quiero ver todas las cuentas
-    element: <ver account>
-     añadir cuentas en el detalle del usuario para simplicar las pestañas
-  },
-  {
-    path: "deletet/eliminarCuenta",  Como administrador quiero eliminar una cuenta
-    element: <Eliminar cuenta>
-  },
-  {
-    path: "put/editarCuenta", Como administrador quiero editar una cuenta
-    element: <Editar Cuenta>
-},*/
-]);
+const router = createBrowserRouter([
+      {
+        path: "/",
+        Component: Login
+      },
+      {
+        path: "/register",
+        Component: CreateUser,
+      }
+
 
 function App() {
   return (
     <>
       <AuthProvider>
+        <CustomNav/>
         <RouterProvider router={router} />
       </AuthProvider>
     </>
