@@ -3,6 +3,7 @@ import { CreateUser } from "./CreateUser";
 import { UpdateUser } from "./UpdateUser";
 import { Deposit } from "../account/Deposit";
 import { GetAccount } from "../account/GetAccount";
+import { Transfer } from "../account/Transfer";
 
 export const UserMain = () => {
   //tomar datos de usuario del storage
@@ -23,7 +24,7 @@ export const UserMain = () => {
       content = <Deposit />;
       break;
     case "transfer":
-      content = <CreateUser />;
+      content = <Transfer />;
       break;
     default:
       content = <div>Hola</div>;
