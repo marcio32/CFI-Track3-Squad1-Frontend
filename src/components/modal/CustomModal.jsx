@@ -26,6 +26,6 @@ CustomModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    body: PropTypes.oneOfType([PropTypes.object, PropTypes.string.isRequired]),
+    body: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.object]),
     onAccept: PropTypes.func.isRequired
 }
