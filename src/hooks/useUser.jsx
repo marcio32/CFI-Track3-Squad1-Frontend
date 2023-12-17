@@ -11,7 +11,7 @@ export const useUser = () => {
     const login = useCallback(async (userData) => {
         try {
             const response = await LoginServices(userData);
-            const { data } = response || {};
+            const { data } = response.data || {};
 
             window.localStorage.setItem('isLogged', JSON.stringify(data));
 
