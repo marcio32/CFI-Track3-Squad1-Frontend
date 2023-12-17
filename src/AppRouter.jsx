@@ -1,13 +1,15 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { AuthContext, AuthProvider } from "./auth/AuthContext";
+import { useContext } from "react";
 
 import { Login } from "./components/login/Login";
-import "./AppRouter.css";
-import { AuthContext, AuthProvider } from "./auth/AuthContext";
-
-import { Roles } from "./pages/Roles";
-import "./AppRouter.css";
+import { CreateUser } from "./components/user/CreateUser";
 import { AdminRoute } from "./Routes/Admin/AdminRoute";
+import { Roles } from "./pages/Roles";
+import { Role } from "./pages/Role";
+import "./AppRouter.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import { Role } from "./pages/Role";
 import { useContext } from "react";
 import { CreateUser } from "./components/createUser/CreateUser";
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
         path: "/register",
         Component: CreateUser,
       }
-]);
+
 
 function App() {
   return (
