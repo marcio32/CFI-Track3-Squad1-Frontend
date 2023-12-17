@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from "react"
+import { Spinner } from "react-bootstrap";
+
+import { UserCard } from "../../components/cards/UserCards";
+import { CustomModal } from "../../components/modal/CustomModal";
+
 import { deleteUser, getUsers } from "../../selectors/userSerivces.mjs";
-import { Button, Card, Modal } from "react-bootstrap";
-
-
-import AvatarIcon from '../../assets/vector-profile-line-black-icon.jpg'
-import './adminRoute.css'
 import { getAccount } from "../../selectors/accountServices.mjs";
+import './adminRoute.css'
 
 export const AdminRoute = () => {
 
@@ -67,7 +68,7 @@ export const AdminRoute = () => {
             })
             setIsOpenModal2(true);
             setHasAccount(true)
-            
+
         }
         catch (err) {
             setHasAccount(false);
@@ -77,58 +78,48 @@ export const AdminRoute = () => {
 
     return (
         <>
-            <h1> Bienvenido Admin </h1>
+            <h1> Listado de usuarios </h1>
             <section className="users-card">
-                {users.length > 0 && users.map((user, index) => (
-                    <Card key={index}>
-                        <Card.Img variant="top" src={AvatarIcon} />
-                        <Card.Body>
-                            <Card.Title> {user.firstName + ' ' + user.lastName}</Card.Title>
-                            <Card.Text> {user.email}</Card.Text>
-                            <Card.Text> {user.role.name}</Card.Text>
-                            <Button variant="info" onClick={() => handleShowDescription(user.id)}> Informacion
-                            </Button>
-                            <Button variant="danger" onClick={() => { handleSelecteUser(user), setIsOpenModal(true) }}> Baja
-                            </Button>
-                        </Card.Body>
-                    </Card>
-                ))}
-                <Modal show={isOpenModal} onHide={() => { handleCloseModal(), setDeleteResponse('') }}>
-                    <Modal.Dialog>
-                        <Modal.Header closeButton>
-                            <Modal.Title> Baja de usuario</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <p className="modal-message"> {!deleteResponse ? `Va a dar de baja al usuario ${userName}` : deleteResponse} </p>
-                        </Modal.Body>
-                        {!deleteResponse ?
-                            <Modal.Footer>
-                                <Button variant="secondary">Cancelar</Button>
-                                <Button variant="primary" onClick={handleDeleteUser}>Aceptar</Button>
-                            </Modal.Footer>
-                            : null}
-                    </Modal.Dialog>
-                </Modal>
-                <Modal show={isOpenModal2} onHide={() => handleCloseModal2()}>
-                    <Modal.Dialog>
-                        <Modal.Header closeButton>
-                            <Modal.Title> Informacion de usuario</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            { hasAccount ? <>
-                                <p className="modal-message"> Numero de cuenta : {userAccount.id} </p>
-                                <p className="modal-message"> Creado : {userAccount.date}</p>
-                                <p className="modal-message"> Estado de la cuenta : {userAccount.active ? "Activo " : "Bloqueado"}</p>
-                                <p className="modal-message"> Dinero en la cuenta : ${userAccount.money}</p>
+                {!hasError ?
+                    users.length > 0 ? users.map((user, index) => (
+                        <UserCard key={index}
+                            user={user}
+                            onSelectUser={() => { handleSelecteUser(user), setIsOpenModal(true)}}
+                            onShowDescription={handleShowDescription}
+                        />
+                    )) :
+                        <>
+                            < Spinner animation="border" />
+                            <p>Un momento por favor, estamos cargando la información</p>
+                        </>
+                    :
+                    <h2> Error cargando la información, intente nuevamente por favor.</h2>
+                }
+                <CustomModal
+                    isOpen={isOpenModal}
+                    onClose={() => { handleCloseModal(); setDeleteResponse('')}}
+                    title="Baja de usuario"
+                    body={!deleteResponse ? `Va a dar de baja al usuario ${userName}` : deleteResponse}
+                    onAccept={() => handleDeleteUser(userId)}
+                />
+                <CustomModal
+                    isOpen={isOpenModal2}
+                    onClose={() => handleCloseModal2()}
+                    title="Información de usuario"
+                    body={
+                        hasAccount ? (
+                            <>
+                                <p className="modal-message"> Numero de cuenta: {userAccount.id} </p>
+                                <p className="modal-message"> Creado el: {userAccount.date}</p>
+                                <p className="modal-message"> Estado de la cuenta: {userAccount.active ? 'Activo' : 'Bloqueado'}</p>
+                                <p className="modal-message"> Dinero en la cuenta: ${userAccount.money}</p>
                             </>
-                                :
-                                <p> El usuario aun no tiene registrado una cuenta a su nombre </p>}
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={() => handleCloseModal2()}>Cerra</Button>
-                        </Modal.Footer>
-                    </Modal.Dialog>
-                </Modal>
+                        ) : (
+                            <p> El usuario aún no tiene registrado una cuenta a su nombre </p>
+                        )
+                    }
+                    onAccept={() => setIsOpenModal2(false)}
+                />
             </section>
         </>
     )
