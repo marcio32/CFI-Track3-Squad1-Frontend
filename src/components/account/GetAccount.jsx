@@ -25,7 +25,7 @@ export const GetAccount = () => {
     <>
       <div>Mi cuenta: </div>
       <div>Número de cuenta: {accountId}</div>
-      <div>Total: $ {amount}</div>
+      <div>Saldo: $ {amount}</div>
     </>
   );
 };
