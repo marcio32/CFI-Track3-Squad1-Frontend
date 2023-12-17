@@ -4,6 +4,7 @@ import { UpdateUser } from "./UpdateUser";
 import { Deposit } from "../account/Deposit";
 import { GetAccount } from "../account/GetAccount";
 import { Transfer } from "../account/Transfer";
+import "./UserMain.css";
 
 export const UserMain = () => {
   //tomar datos de usuario del storage
@@ -32,14 +33,16 @@ export const UserMain = () => {
 
   return (
     <>
-      <div className="sideBar">
-        <div onClick={() => setView("createAccount")}>Crear Cuenta</div>
-        <div onClick={() => setView("account")}>Ver mi cuenta</div>
-        <div onClick={() => setView("updateUser")}>Actualizar datos</div>
-        <div onClick={() => setView("deposit")}>Depositar</div>
-        <div onClick={() => setView("transfer")}>Transferir</div>
+      <div className="wrapper">
+        <div className="sideBar">
+          <div onClick={() => setView("createAccount")}>Crear Cuenta</div>
+          <div onClick={() => setView("account")}>Ver mi cuenta</div>
+          <div onClick={() => setView("updateUser")}>Actualizar datos</div>
+          <div onClick={() => setView("deposit")}>Depositar</div>
+          <div onClick={() => setView("transfer")}>Transferir</div>
+        </div>
+        <div className="view">{content}</div>
       </div>
-      <div className="view">{content}</div>
     </>
   );
 };

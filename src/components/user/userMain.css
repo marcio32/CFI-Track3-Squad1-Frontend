@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+}
+
+.sideBar {
+  flex: 0 0 20%;
+  background-color: #f0f0f0;
+}
+
+.view {
+  flex: 1;
+  padding: 20px;
+}
