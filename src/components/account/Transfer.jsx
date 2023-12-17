@@ -1,15 +1,29 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../auth/AuthContext";
 
 export const Transfer = () => {
-  const [remoteAccount, setRemoteAccount] = useState("");
-  const [transferAmount, setTransferAmount] = useState(0);
+  const { userData } = useContext(AuthContext);
 
-  const myAccountId = 2; //traer info de usuario
+  const [myAccountId, setMyAccountId] = useState("");
   const [myAmount, setMyAmount] = useState(0);
+  // const [remoteAccount, setRemoteAccount] = useState("");
+  // const [transferAmount, setTransferAmount] = useState(0);
+  const [transferData, setTransferData] = useState({
+    accountReceptorId: 0,
+    money: 0,
+  });
 
   useEffect(() => {
     try {
+      axios
+        .get(`https://localhost:7067/api/account/details/${userData.userId}`)
+        .then((response) => {
+          setMyAccountId(response.data.data.id);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       axios
         .get(`https://localhost:7067/api/account/${myAccountId}`)
         .then((response) => {
@@ -21,27 +35,26 @@ export const Transfer = () => {
     } catch (error) {
       console.error(error);
     }
-  }, [myAccountId]);
+  }, [myAmount]);
 
-  const onRemoteAccountChange = (e) => {
-    setRemoteAccount(e.target.value);
-  };
+  // const onRemoteAccountChange = (e) => {
+  //   setRemoteAccount(e.target.value);
+  // };
 
-  const onTransferAmountChange = (e) => {
-    setTransferAmount(e.target.value);
+  // const onTransferAmountChange = (e) => {
+  //   setTransferAmount(e.target.value);
+  // };
+  const onTransferDataChange = (e) => {
+    setTransferData({ ...transferData, [e.target.id]: e.target.value });
   };
 
   const onTransferSubmitt = async () => {
     try {
-      await axios.post(`https://localhost:7067/api/account/transfer/${remoteAccount}`, {
-        accountReceptorId: remoteAccount,
-        money: transferAmount,
-      });
-      await axios.post(
-        `https://localhost:7067/api/account/extract/${myAccountId}?money=${transferAmount}`,
-      );
+      await axios.post(`https://localhost:7067/api/Account/transfer/${myAccountId}`, transferData);
+      alert("Transferencia realizada con éxito.");
     } catch (error) {
       console.error(error);
+      alert("Ocurrió un error al realizar la transferencia.");
     }
   };
 
@@ -53,8 +66,8 @@ export const Transfer = () => {
       <div>
         Cuenta de destino:
         <input
-          id="remoteAccount"
-          onChange={onRemoteAccountChange}
+          id="accountReceptorId"
+          onChange={onTransferDataChange}
           type="number"
           placeholder="N° de cuenta"
         />
@@ -62,8 +75,8 @@ export const Transfer = () => {
       <div>
         Monto a transferir: $
         <input
-          id="transferAmount"
-          onChange={onTransferAmountChange}
+          id="money"
+          onChange={onTransferDataChange}
           type="number"
           placeholder="Ingrese el monto a transferir"
         />

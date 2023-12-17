@@ -15,10 +15,13 @@ export const Deposit = () => {
   const onDepositSubmitt = async () => {
     try {
       await axios.post(`https://localhost:7067/api/account/deposit/${accountId}?money=${amount}`);
+      alert("Depósito realizado con éxito.");
     } catch (error) {
       console.error(error);
+      alert("Depósito no realizado.");
     }
   };
+
   return (
     <>
       <div>Deposit</div>
