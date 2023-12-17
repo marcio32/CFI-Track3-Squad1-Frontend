@@ -1,13 +1,24 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../auth/AuthContext";
 
 export const GetAccount = () => {
   //falta traer la info del usuario
-  const accountId = 2;
+  const { userData } = useContext(AuthContext);
+  const [accountId, setAccountId] = useState("");
+
   const [amount, setAmount] = useState(0);
 
   useEffect(() => {
     try {
+      axios
+        .get(`https://localhost:7067/api/account/details/${userData.userId}`)
+        .then((response) => {
+          setAccountId(response.data.data.id);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       axios
         .get(`https://localhost:7067/api/account/${accountId}`)
         .then((response) => {

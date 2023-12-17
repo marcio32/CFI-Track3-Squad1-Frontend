@@ -14,7 +14,7 @@ export const Deposit = () => {
 
   const onDepositSubmitt = async () => {
     try {
-      await axios.post(`https://localhost:7067/api/account/deposti/${accountId}?money=${amount}`);
+      await axios.post(`https://localhost:7067/api/account/deposit/${accountId}?money=${amount}`);
     } catch (error) {
       console.error(error);
     }
