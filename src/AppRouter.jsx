@@ -10,6 +10,7 @@ import { AdminRoute } from "./Routes/Admin/AdminRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Role } from "./pages/Role";
 import { useContext } from "react";
+import { CreateUser } from "./components/createUser/CreateUser";
 
 const router = createBrowserRouter([
   /*Para crear rutas una vez generado el .jsx dupliquen la estructura indicando el path y realicen la importación correspondiente
@@ -23,13 +24,11 @@ const router = createBrowserRouter([
 
     element: <Login />,
   },
-  /*{
-    
-    path: "post/create",  Como usuario standard quiero agregar un usuario
-    element: <Crear usuario>
-    
-  },
   {
+    path: "/register",
+    element: <CreateUser />,
+  },
+  /*{
     
     path: "post/createAccount",  Como usuario standard quiero crear una cuenta
     element: <Crear cuenta>
@@ -49,7 +48,7 @@ const router = createBrowserRouter([
   },*/
   {
     path: "/admin",
-    element: <AdminRoute />
+    element: <AdminRoute />,
     // agregar eliminacion de usuario y vista activos/ inactivos
   },
   {
