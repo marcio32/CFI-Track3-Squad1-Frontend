@@ -1,7 +1,7 @@
 import axios from "axios";
-const baseUrl = 'https://localhost:7067/api/'
+import { urlBase } from "../selectors/apiPath";
 
 export const LoginServices = async(userData) => {
-    const response = await axios.post(`${baseUrl}Auth`, userData);
+    const response = await axios.post(`${urlBase}Auth`, userData);
     return response.data;
 }

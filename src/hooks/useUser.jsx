@@ -13,8 +13,8 @@ export const useUser = () => {
         setIsLoading({ loading: true, error: false, status: '' })
         try {
             const response = await LoginServices(userData);
-            const { data } = response.data || {};
-
+            const { data } = response || {};
+            
             window.localStorage.setItem('isLogged', JSON.stringify(data));
 
             dispatch({
