@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { useUser } from "../../hooks/useUser"
+import { Spinner } from "react-bootstrap";
 
 export const Login = () => {
 
-    const { login } = useUser();
+    const { isLoading, setIsLoading, login } = useUser();
     const [userData, setUserData] = useState({
         email: '',
         password: ''
@@ -18,17 +19,22 @@ export const Login = () => {
 
     const handleSubmitLogin = (event) => {
         event.preventDefault();
+        setIsLoading({});
         login(userData);
     }
 
     return (
         <>
             <form onSubmit={handleSubmitLogin}>
-                <label htmlFor="email">Ingrese su email</label>
+                <label htmlFor="email">Email</label>
                 <input id="email" type="text" name="email" value={userData.email} onChange={handleInputChange} />
-                <label htmlFor="password">Ingrese su password</label>
-                <input id="password" type="text" name="password" value={userData.password} onChange={handleInputChange} />
-                <button>Enviar</button>
+                <label htmlFor="password">Contraseña</label>
+                <input id="password" type="password" name="password" value={userData.password} onChange={handleInputChange} />
+                {isLoading.loading ?
+                    <Spinner /> :
+                    <button>Iniciar sesion </button>
+                }
+                {isLoading.status === 401 ? "Usuario o contraseña incorrectos" : isLoading.status}
             </form>
         </>
     )

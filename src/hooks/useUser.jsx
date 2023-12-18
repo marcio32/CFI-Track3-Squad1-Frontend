@@ -9,10 +9,12 @@ export const useUser = () => {
     const [isLoading, setIsLoading] = useState({ loading: false, error: false, status: '' });
 
     const login = useCallback(async (userData) => {
+
+        setIsLoading({ loading: true, error: false, status: '' })
         try {
             const response = await LoginServices(userData);
-            const { data } = response.data || {};
-
+            const { data } = response || {};
+            
             window.localStorage.setItem('isLogged', JSON.stringify(data));
 
             dispatch({
@@ -21,13 +23,14 @@ export const useUser = () => {
                     jwt: data,
                 }
             })
+            setIsLoading({ loading: false, error: false, status: '' })
         }
         catch (error) {
             window.localStorage.removeItem('isLogged');
             if (error.response && error.response.status == 401) {
-                setIsLoading({ loading: true, error: true, status: 401 })
+                setIsLoading({ loading: false, error: true, status: 401 })
             } else {
-                setIsLoading({ loading: true, error: true, status: 'Error inesperado. Intente nuevamente.' })
+                setIsLoading({ loading: false, error: true, status: 'Error inesperado. Intente nuevamente.' })
             }
         }
     }, [dispatch])
@@ -39,6 +42,7 @@ export const useUser = () => {
 
     return {
         isLoading,
+        setIsLoading,
         login,
         logout
     }

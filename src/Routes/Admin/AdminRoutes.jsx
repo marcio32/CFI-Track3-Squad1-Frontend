@@ -7,7 +7,7 @@ import { Accounts } from '../../pages/Accounts';
 import './adminRoute.css'
 
 
-export const AdminRoute = () => {
+export const AdminRoutes = () => {
 
     const [isUserSelected, setIsUserSelected ] = useState(true);
 
