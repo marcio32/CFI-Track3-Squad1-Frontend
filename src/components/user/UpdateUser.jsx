@@ -31,7 +31,7 @@ export const UpdateUser = (userId) => {
   return (
     <>
       <form action="">
-        Crea tu usuario
+        Modificar datos
         <label>
           Nombres:{" "}
           <input

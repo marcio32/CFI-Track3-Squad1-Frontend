@@ -5,6 +5,7 @@ import { Deposit } from "../account/Deposit";
 import { GetAccount } from "../account/GetAccount";
 import { Transfer } from "../account/Transfer";
 import "./UserMain.css";
+import { CreateAccount } from "../account/CreateAccount";
 
 export const UserMain = () => {
   //tomar datos de usuario del storage
@@ -12,8 +13,11 @@ export const UserMain = () => {
 
   let content;
   switch (view) {
-    case "createAccount":
+    case "createUser":
       content = <CreateUser />;
+      break;
+    case "createAccount":
+      content = <CreateAccount />;
       break;
     case "account":
       content = <GetAccount />;
