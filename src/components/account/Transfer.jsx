@@ -61,26 +61,35 @@ export const Transfer = () => {
   return (
     <>
       <div>Transferir</div>
-      <div>Cuenta de origen: {myAccountId}</div>
-      <div>Saldo: {myAmount}</div>
-      <div>
-        Cuenta de destino:
-        <input
-          id="accountReceptorId"
-          onChange={onTransferDataChange}
-          type="number"
-          placeholder="N° de cuenta"
-        />
-      </div>
-      <div>
-        Monto a transferir: $
-        <input
-          id="money"
-          onChange={onTransferDataChange}
-          type="number"
-          placeholder="Ingrese el monto a transferir"
-        />
-      </div>
+      <section className="transfer">
+        <div className="right">
+          <div>Cuenta de origen: {myAccountId}</div>
+          <div>Saldo: {myAmount}</div>
+        </div>
+
+        <div className="left">
+          <div>
+            Cuenta de destino:
+            <input
+              id="accountReceptorId"
+              onChange={onTransferDataChange}
+              type="number"
+              placeholder="N° de cuenta"
+            />
+          </div>
+
+          <div>
+            Monto a transferir: $
+            <input
+              id="money"
+              onChange={onTransferDataChange}
+              type="number"
+              placeholder="Ingrese el monto a transferir"
+            />
+          </div>
+        </div>
+      </section>
+
       <button onClick={onTransferSubmitt}>Transferir</button>
     </>
   );

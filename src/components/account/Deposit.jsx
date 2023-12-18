@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import "../../assets/Deposit.css";
 
 export const Deposit = () => {
   const [accountId, setAccountId] = useState("");
@@ -24,12 +25,16 @@ export const Deposit = () => {
 
   return (
     <>
-      <div>Deposit</div>
-      <label>Número de cuenta: </label>
-      <input type="number" onChange={onAccountIdChange} />
-      <label>Monto: </label>
-      <input type="number" onChange={onAmountChange} />
-      <button onClick={onDepositSubmitt}>Depositar</button>
+      <section className="deposit">
+        <div>Deposit</div>
+        <form action="">
+          <label>Número de cuenta: </label>
+          <input type="number" onChange={onAccountIdChange} />
+          <label>Monto: </label>
+          <input type="number" onChange={onAmountChange} />
+          <button onClick={onDepositSubmitt}>Depositar</button>
+        </form>
+      </section>
     </>
   );
 };
