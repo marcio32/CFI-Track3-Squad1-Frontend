@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/AuthContext";
+import "../../assets/myAccount.css";
 
 export const GetAccount = () => {
   //falta traer la info del usuario
@@ -34,9 +35,11 @@ export const GetAccount = () => {
 
   return (
     <>
-      <div>Mi cuenta: </div>
-      <div>Número de cuenta: {accountId}</div>
-      <div>Saldo: $ {amount}</div>
+      <section className="myAcc">
+        <div>Mi cuenta: </div>
+        <div>Número de cuenta: {accountId}</div>
+        <div>Saldo: $ {amount}</div>
+      </section>
     </>
   );
 };

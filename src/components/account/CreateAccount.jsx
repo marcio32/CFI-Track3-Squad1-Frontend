@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/AuthContext";
+import "../../assets/account.css";
 
 export const CreateAccount = () => {
   const { userData } = useContext(AuthContext);
@@ -42,10 +43,10 @@ export const CreateAccount = () => {
       {accountId != null ? (
         <div>Ya tiene una cuenta activa</div>
       ) : (
-        <>
+        <section className="create">
           <div className="createAccount">Para crear tu cuenta haz click </div>
           <button onClick={handleCreateAccount}>Aquí!</button>
-        </>
+        </section>
       )}
     </>
   );
