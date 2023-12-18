@@ -1,0 +1,46 @@
+body .register {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+    text-align: center;
+    margin: 90px;
+}
+
+.register form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.register label {
+    display: flex;
+    flex-direction: column;
+}
+
+.register form input {
+    margin: 20px;
+    height: 50px;
+    width: 300px;
+
+    border-radius: 10px;
+}
+
+.register button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin: 20px;
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+
+    background-color: #a5ffd6;
+    cursor: pointer;
+    border: none;
+
+    font-size: 1.2em;
+}

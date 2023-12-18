@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useUser } from "../../hooks/useUser"
 import { Spinner } from "react-bootstrap";
+import "../../assets/login.css";
 
 export const Login = () => {
 
@@ -25,17 +26,20 @@ export const Login = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmitLogin}>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="text" name="email" value={userData.email} onChange={handleInputChange} />
-                <label htmlFor="password">Contraseña</label>
-                <input id="password" type="password" name="password" value={userData.password} onChange={handleInputChange} />
-                {isLoading.loading ?
-                    <Spinner /> :
-                    <button>Iniciar sesion </button>
-                }
-                {isLoading.status === 401 ? "Usuario o contraseña incorrectos" : isLoading.status}
-            </form>
+            <section className="login">
+                <form onSubmit={handleSubmitLogin}>
+                    <label htmlFor="email">Email</label>
+                    <input id="email" type="text" name="email" value={userData.email} onChange={handleInputChange} />
+                    <label htmlFor="password">Contraseña</label>
+                    <input id="password" type="password" name="password" value={userData.password} onChange={handleInputChange} />
+                    {isLoading.loading ?
+                        <Spinner /> :
+                        <button>Iniciar sesion </button>
+                    }
+                    {isLoading.status === 401 ? "Usuario o contraseña incorrectos" : isLoading.status}
+                </form>
+            </section>
+
         </>
     )
 }

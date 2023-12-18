@@ -1,0 +1,45 @@
+body .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 90px;
+
+    border-bottom: #ff686b  2px solid;
+    background-color: #edf2fb;    
+}
+
+body .navbar .right-side a {
+    margin: 0 15px;
+
+    font-size: 1.5em;
+    text-decoration:none;
+    color: #ff686b;
+}
+
+body .navbar a .firstCircle {
+    height: 65px;
+    width: 13px;
+    border-radius: 50px;
+
+    position: absolute;
+    transform: translate(285%, -65%) rotate(230deg);
+    
+    background-color: #ff686b;
+}
+
+body .navbar a .secondCircle {
+    height: 65px;
+    width: 13px;
+    border-radius: 50px;
+
+    position: absolute;
+    transform: translate(285%, -65%) rotate(130deg);
+    
+    background-color: #ff686b;
+}
+
+
+body .navbar div {
+    margin: 15px
+}
