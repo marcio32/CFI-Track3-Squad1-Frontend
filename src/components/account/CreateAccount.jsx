@@ -6,8 +6,6 @@ import "../../assets/account.css";
 export const CreateAccount = () => {
   const { userData } = useContext(AuthContext);
   const [accountId, setAccountId] = useState(null);
-  console.log(userData);
-  console.log(accountId);
 
   const user = {
     money: 0,

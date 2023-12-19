@@ -35,10 +35,22 @@ export const GetAccount = () => {
 
   return (
     <>
+      <h2 className="greeting"> Tu billetera </h2>
       <section className="myAcc">
-        <div>Mi cuenta: </div>
-        <div>Número de cuenta: {accountId}</div>
-        <div>Saldo: $ {amount}</div>
+        <div className="amount-logo">
+          <p className="amount-logo-p">CA</p>
+        </div>
+        <div className="account-info">
+          <p className="amount-p"> ${amount}</p>
+          <p className="account-id"> N° cuenta:  {accountId}</p></div>
+      </section>
+      <section className="movements">
+        <h3 className="movements-title">Mis movimientos</h3>
+        <div className="movements-div">
+          <p className="movement-element">Fecha</p>
+          <p className="movement-element">Descripción</p>
+          <p className="movement-element">Monto</p>
+        </div>
       </section>
     </>
   );

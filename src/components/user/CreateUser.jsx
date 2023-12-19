@@ -36,11 +36,11 @@ export const CreateUser = () => {
   return (
     <>
       <section className="register">
-        Crea tu usuario
-        <form action="">  
+        <h2 className="register-title">Registro</h2>
+        <form action="">
           <div className="left">
             <label>
-              Nombres:{" "}
+              Nombre
               <input
                 id="firstName"
                 onChange={onFormChange}
@@ -49,7 +49,7 @@ export const CreateUser = () => {
               />
             </label>
             <label>
-              Apellidos:{" "}
+              Apellido
               <input
                 id="lastName"
                 onChange={onFormChange}
@@ -61,7 +61,7 @@ export const CreateUser = () => {
 
           <div className="right">
             <label>
-              Dirección de mail:{" "}
+              Dirección de mail
               <input
                 id="email"
                 onChange={onFormChange}
@@ -70,12 +70,12 @@ export const CreateUser = () => {
               />
             </label>
             <label>
-              Contraseña: <input id="password" onChange={onFormChange} type="password" />
+              Contraseña<input id="password" onChange={onFormChange} type="password" />
             </label>
           </div>
 
         </form>
-        <button onClick={onFormSubmit}>Crear usuario</button>
+        <button onClick={onFormSubmit}>Registrarse</button>
       </section>
     </>
   );

@@ -1,23 +1,58 @@
-body .login {
+.login {
     display: flex;
     justify-content: center;
-
-    text-align: center;
+    align-items: center;
+    flex-direction: column;
     margin: 90px;
+    font-size: 1.2rem;
+}
+
+.login-image {
+    width: 60%;
+    background-image: url("../assets/Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-main-title {
+    font-family: 3rem;
+    color: #edf2fb;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 70%;
+    margin: 4rem 1rem 1rem 5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.781);
+}
+
+.border-text {
+    background-color: #edf2fb;
+    width: 65%;
+    height: 15px;
+    margin-left: 5rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.781);
+    border-radius: 2px;
 }
 
 .login form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.login form input {
+.input-login {
     margin: 20px;
     height: 50px;
     width: 300px;
+    padding-left: 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.651);
+}
 
-    border-radius: 10px;
+.label-login {
+    margin-left: 2rem;
 }
 
 .login form button {
@@ -36,4 +71,16 @@ body .login {
     border: none;
 
     font-size: 1.2em;
+    transition: all .3s ease;
+}
+
+.login form button:hover {
+    background-color: #7ff7c1;
+    transition: all .3s ease;
+}
+
+.error-login-message {
+    color: red;
+    margin: auto;
+    margin-bottom: 2rem;
 }
