@@ -1,13 +1,15 @@
 import { Table, Button } from "react-bootstrap";
 import { formatDate } from "../../helpers/formatedDate";
 import PropTypes from 'prop-types'
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CustomModal } from "../modal/CustomModal";
 import { deleteAccount, editAccount } from "../../selectors/accountServices.mjs";
+import { AuthContext } from "../../auth/AuthContext";
 
 
 export const CustomTable = ({ data }) => {
 
+    const { isLogged: { jwt } } = useContext(AuthContext);
     const [accountId, setAccountId] = useState(null);
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [isOpenModal2, setIsOpenModal2] = useState(false);
@@ -24,7 +26,7 @@ export const CustomTable = ({ data }) => {
 
     const handleDeleteAccount = async () => {
         try {
-            await deleteAccount(accountId);
+            await deleteAccount(accountId, jwt);
             setDeleteResponse('Se ah eliminado la cuenta.')
         }
         catch (error) {
@@ -34,7 +36,7 @@ export const CustomTable = ({ data }) => {
 
     const handleUpdateAccount = async () => {
         try {
-            await editAccount(accountId, accountData);
+            await editAccount(accountId, accountData, jwt);
             setUpdateResponse('Se ah modificado la cuenta.')
         }
         catch (error) {
@@ -49,7 +51,7 @@ export const CustomTable = ({ data }) => {
             [name]: value,
         })
     }
-    console.log(accountData.isBlocked)
+
     const handleCheboxChange = (event) => {
         const { name, checked } = event.target;
         setAccountData({
@@ -92,12 +94,18 @@ export const CustomTable = ({ data }) => {
                     title="Modificacion de cuenta"
                     body={!updateResponse ?
                         <>
-                            <label htmlFor="input-money">Dinero</label>
-                            <input id="input-money" type="decimal" placeholder="Dinero" name="money" value={accountData.money} onChange={handleInputChange} />
-                            <label htmlFor="input-checbox">Bloquear</label>
-                            <input id="input-checbox" type="checkbox" name="isBlocked" onChange={handleCheboxChange} />
-                            <label htmlFor="input-user-id">N° Usuario</label>
-                            <input id="input-user-id" type="number" placeholder="Numero usuario" name="userId" value={accountData.userId} onChange={handleInputChange} />
+                            <div className="account-edit-div">
+                                <label  className="account-edit-label" htmlFor="input-money">Dinero</label>
+                                <input className="input-login" id="input-money" type="decimal" placeholder="Dinero" name="money" value={accountData.money} onChange={handleInputChange} />
+                            </div>
+                            <div className="account-edit-div">
+                                <label className="account-edit-label" htmlFor="input-checbox">Bloquear</label>
+                                <input className="checkbox-input" id="input-checbox" type="checkbox" name="isBlocked" onChange={handleCheboxChange} />
+                            </div>
+                            <div className="account-edit-div">
+                                <label className="account-edit-label" htmlFor="input-user-id">N° Usuario</label>
+                                <input className="input-login" id="input-user-id" type="number" placeholder="Numero usuario" name="userId" value={accountData.userId} onChange={handleInputChange} />
+                            </div>
                         </> :
                         updateResponse
                     }

@@ -2,8 +2,11 @@ import axios from "axios";
 import { urlBase } from "./apiPath";
 
 
-export const getAccount = async (userId) => {
-    const response = await axios.get(`${urlBase}Account/details/${userId}`);
+export const getAccount = async (userId, token) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    const response = await axios.get(`${urlBase}Account/details/${userId}` , { headers });
     return response.data;
 }
 

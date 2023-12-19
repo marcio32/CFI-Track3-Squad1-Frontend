@@ -6,7 +6,7 @@ import { AuthContext } from "../../auth/AuthContext";
 export const UpdateUser = ({ userId }) => {
   //falta traer la data del user
   const [userData, setUserData] = useState({ state: null });
-  const { isLogged : {jwt}} = useContext(AuthContext)
+  const { isLogged: { jwt } } = useContext(AuthContext)
 
   const onFormChange = (e) => {
     setUserData({ ...userData, [e.target.id]: e.target.value });
@@ -33,7 +33,7 @@ export const UpdateUser = ({ userId }) => {
       'Authorization': `Bearer ${jwt}`
     }
     try {
-      setUserData(axios.get(`https://localhost:7067/api/User/${userId}`, {headers}));
+      setUserData(axios.get(`https://localhost:7067/api/User/${userId}`, { headers }));
     } catch (error) {
       console.error(error);
     }
@@ -42,12 +42,12 @@ export const UpdateUser = ({ userId }) => {
   return (
     <>
       <section className="edit">
-        Modificar datos
+        <h2 className="edit-profile-title">Editar perfil</h2>
         <form action="">
-          <div className="right">
+          <div>
             <label>
-              Nombres:{" "}
-              <input
+              Nombre
+              <input className="input-login"
                 id="firstName"
                 onChange={onFormChange}
                 type="text"
@@ -55,8 +55,8 @@ export const UpdateUser = ({ userId }) => {
               />
             </label>
             <label>
-              Apellidos:{" "}
-              <input
+              Apellido
+              <input className="input-login"
                 id="lastName"
                 onChange={onFormChange}
                 type="text"
@@ -65,10 +65,10 @@ export const UpdateUser = ({ userId }) => {
             </label>
           </div>
 
-          <div className="left">
+          <div>
             <label>
-              Dirección de mail:{" "}
-              <input
+              Dirección de mail
+              <input className="input-login"
                 id="email"
                 onChange={onFormChange}
                 type="email"
@@ -76,11 +76,12 @@ export const UpdateUser = ({ userId }) => {
               />
             </label>
             <label>
-              Contraseña: <input id="password" onChange={onFormChange} type="password" />
+              Contraseña
+              <input className="input-login" id="password" onChange={onFormChange} type="password" />
             </label>
           </div>
         </form>
-        <button onClick={onFormSubmit}>Crear usuario</button>
+        <button onClick={onFormSubmit}> Modificar </button>
       </section>
     </>
   );

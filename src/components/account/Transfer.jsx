@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/AuthContext";
+import '../../assets/transfer.css'
 
 export const Transfer = () => {
   const { userData, isLogged: { jwt } } = useContext(AuthContext);
@@ -50,37 +51,40 @@ export const Transfer = () => {
 
   return (
     <>
-      <div>Transferir</div>
+      <h2 className="transfer-title">Transferir</h2>
       <section className="transfer">
-        <div className="right">
-          <div>Cuenta de origen: {myAccountId}</div>
-          <div>Saldo: {myAmount}</div>
-        </div>
-
-        <div className="left">
-          <div>
-            Cuenta de destino:
-            <input
+        <form className="form-transfer" onSubmit={onTransferSubmitt}>
+          <div className="right">
+            <p>Cuenta de origen: {myAccountId}</p>
+            <p>Saldo: ${myAmount}</p>
+          </div>
+          <div className="div-transfer-group">
+            <label className="label-transfer">
+              Cuenta de destino
+            </label>
+            <input className="input-login"
               id="accountReceptorId"
               onChange={onTransferDataChange}
               type="number"
               placeholder="N° de cuenta"
             />
           </div>
-
-          <div>
-            Monto a transferir: $
-            <input
+          <div className="div-transfer-group">
+            <label className="label-transfer">
+              Monto a transferir
+            </label>
+            <input className="input-login"
               id="money"
               onChange={onTransferDataChange}
               type="number"
               placeholder="Ingrese el monto a transferir"
             />
           </div>
-        </div>
+          <button className="btn-transfer-form">Transferir</button>
+        </form>
       </section>
 
-      <button onClick={onTransferSubmitt}>Transferir</button>
+
     </>
   );
 };

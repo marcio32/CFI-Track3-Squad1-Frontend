@@ -3,9 +3,7 @@ body .edit {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    
     text-align: center;
-    margin: 90px;
 }
 
 .edit form {
@@ -43,4 +41,13 @@ body .edit {
     border: none;
 
     font-size: 1.2em;
+}
+
+.edit button:hover {
+    background-color: #7ff7c1;
+    transition: all .3s ease;
+}
+
+.edit-profile-title {
+    margin-bottom: 3rem;
 }

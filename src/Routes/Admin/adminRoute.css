@@ -4,3 +4,70 @@
     gap: 20px;
     width: 100%;
 }
+
+.admin-page-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.select-page-btn-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2rem auto;
+}
+
+.btn.btn-primary {
+    font-size: 1.2rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn.btn-danger,
+.btn.btn-info {
+    width: 50%;
+    margin: 2px;
+}
+
+.section-title {
+    margin-bottom: 3rem;
+}
+
+.accounts-list {
+    width: 100%;
+}
+
+.accounts-list table {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+.account-edit-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.account-edit-label {
+    font-size: 1.2rem;
+}
+
+.modal-footer {
+    justify-content: space-around !important;
+}
+
+.btn.btn-secondary {
+    font-size: 1.2rem;
+}
+.checkbox-input {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 1rem;
+}

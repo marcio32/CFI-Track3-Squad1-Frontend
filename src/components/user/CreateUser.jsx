@@ -38,7 +38,7 @@ export const CreateUser = () => {
       <section className="register">
         <h2 className="register-title">Registro</h2>
         <form action="">
-          <div className="left">
+          <div>
             <label>
               Nombre
               <input
@@ -59,7 +59,7 @@ export const CreateUser = () => {
             </label>
           </div>
 
-          <div className="right">
+          <div>
             <label>
               Dirección de mail
               <input

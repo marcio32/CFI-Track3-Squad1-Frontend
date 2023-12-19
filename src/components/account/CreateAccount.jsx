@@ -48,7 +48,7 @@ export const CreateAccount = () => {
   return (
     <>
       {accountId != null ? (
-        <div>Ya tiene una cuenta activa</div>
+        <p className="p-have-account">Ya tiene una cuenta activa</p>
       ) : (
         <section className="create">
           <div className="createAccount">Para crear tu cuenta haz click </div>
