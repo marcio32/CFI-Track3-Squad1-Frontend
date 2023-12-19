@@ -25,7 +25,7 @@ export const Accounts = () => {
     
     return (
         <>
-            <h1> Listado de cuentas </h1>
+            <h1 className="section-title"> Cuentas </h1>
             <section className="accounts-list">
                 {!hasError ?
                     accounts.length > 0 ?

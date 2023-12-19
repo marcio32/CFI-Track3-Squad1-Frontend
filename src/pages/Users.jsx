@@ -12,7 +12,7 @@ import { AuthContext } from "../auth/AuthContext";
 
 export const Users = () => {
 
-    const { isLogged } = useContext(AuthContext);
+    const { isLogged : {jwt} } = useContext(AuthContext);
 
     const [users, setUsers] = useState([]);
     const [hasError, setHasError] = useState(null);
@@ -34,18 +34,18 @@ export const Users = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await getUsers(isLogged.jwt);
+                const data = await getUsers(jwt);
                 setUsers(data.data);
             } catch (err) {
                 setHasError(true);
             }
         };
         fetchData();
-    }, [isLogged]);
+    }, [jwt]);
 
     const handleDeleteUser = async () => {
         try {
-            await deleteUser(selectedUser.id);
+            await deleteUser(selectedUser.id, jwt);
             setUsers(prevUsers => prevUsers.filter(user => user.id !== selectedUser.id));
             setDeleteResponse('Usuario eliminado.')
         }
@@ -56,7 +56,7 @@ export const Users = () => {
 
     const handleShowDescription = async (userId) => {
         try {
-            const data = await getAccount(userId);
+            const data = await getAccount(userId, jwt);
             setUserInformation({
                 account: data.data.id,
                 date: formatDate(data.data.creationDate),
@@ -73,7 +73,7 @@ export const Users = () => {
     }
     return (
         <>
-            <h1> Listado de usuarios </h1>
+            <h1 className="section-title"> Usuarios </h1>
             <section className="users-card">
                 {!hasError ?
                     users.length > 0 ? users.map((user, index) => (
