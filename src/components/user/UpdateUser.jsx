@@ -1,19 +1,26 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../../assets/edit.css";
+import { AuthContext } from "../../auth/AuthContext";
 
-export const UpdateUser = (userId) => {
+export const UpdateUser = ({ userId }) => {
   //falta traer la data del user
   const [userData, setUserData] = useState({ state: null });
+  const { isLogged : {jwt}} = useContext(AuthContext)
 
   const onFormChange = (e) => {
     setUserData({ ...userData, [e.target.id]: e.target.value });
   };
 
   const onFormSubmit = async (e) => {
+
+    const headers = {
+      'Authorization': `Bearer ${jwt}`
+    }
     e.preventDefault();
     try {
-      await axios.put(`https://localhost:7067/api/User/${userId}`, userData);
+      await axios.put(`https://localhost:7067/api/User/${userId}`, userData,
+        { headers });
       alert("Datos actualizados.");
     } catch (error) {
       console.error(error);
@@ -22,12 +29,15 @@ export const UpdateUser = (userId) => {
   };
 
   useEffect(() => {
+    const headers = {
+      'Authorization': `Bearer ${jwt}`
+    }
     try {
-      setUserData(axios.get(`https://localhost:7067/api/User/${userId}`));
+      setUserData(axios.get(`https://localhost:7067/api/User/${userId}`, {headers}));
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [jwt, userId]);
 
   return (
     <>
