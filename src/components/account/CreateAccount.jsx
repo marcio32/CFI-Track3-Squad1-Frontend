@@ -4,7 +4,7 @@ import { AuthContext } from "../../auth/AuthContext";
 import "../../assets/account.css";
 
 export const CreateAccount = () => {
-  const { userData } = useContext(AuthContext);
+  const { userData, isLogged: { jwt } } = useContext(AuthContext);
   const [accountId, setAccountId] = useState(null);
 
   const user = {
@@ -13,29 +13,38 @@ export const CreateAccount = () => {
   };
 
   useEffect(() => {
-    try {
-      axios
-        .get(`https://localhost:7067/api/account/details/${userData.userId}`)
-        .then((response) => {
-          setAccountId(response.data.data.id);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      console.error(error);
+    const fetchAccountId = async () => {
+      const headers = {
+        'Authorization': `Bearer ${jwt}`
+      };
+
+      try {
+        const response = await axios.get(`https://localhost:7067/api/account/details/${userData.userId}`, { headers });
+        setAccountId(response.data.data.id);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (!accountId) {
+      fetchAccountId();
     }
-  }, [accountId, userData.userId]);
+  }, [accountId, jwt, userData.userId]);
 
   const handleCreateAccount = async () => {
+    const headers = {
+      'Authorization': `Bearer ${jwt}`
+    };
+
     try {
-      await axios.post("https://localhost:7067/api/account", user);
+      await axios.post("https://localhost:7067/api/account", user, { headers });
       alert("Cuenta creada.");
     } catch (error) {
       console.error(error);
       alert("Hubo un error al crear la cuenta.");
     }
   };
+
   return (
     <>
       {accountId != null ? (

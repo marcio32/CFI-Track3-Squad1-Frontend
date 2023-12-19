@@ -11,28 +11,27 @@ import { AuthContext } from "../../auth/AuthContext";
 export const UserMain = () => {
   //tomar datos de usuario del storage
   const [view, setView] = useState("account");
-  const { userData } = useContext(AuthContext);
+  const { userData, isLogged : {jwt}} = useContext(AuthContext);
 
-  console.log(userData)
   let content;
   switch (view) {
     case "createUser":
-      content = <CreateUser />;
+      content = <CreateUser token={jwt}/>;
       break;
     case "createAccount":
-      content = <CreateAccount />;
+      content = <CreateAccount token={jwt}/>;
       break;
     case "account":
-      content = <GetAccount />;
+      content = <GetAccount/>;
       break;
     case "updateUser":
-      content = <UpdateUser />;
+      content = <UpdateUser userId={userData.userId}/>;
       break;
     case "deposit":
       content = <Deposit />;
       break;
     case "transfer":
-      content = <Transfer />;
+      content = <Transfer/>;
       break;
     default:
       content = <div>Hola</div>;
@@ -49,7 +48,7 @@ export const UserMain = () => {
             </svg>
             <p className="user-email">{userData.userEmail}</p>
             </div>
-          <div className="sidebar-element" onClick={() => setView("createAccount")}>Crear Cuenta</div>
+          <div className="sidebar-element" onClick={() => setView("createAccount")}>Activar cuenta</div>
           <div className="sidebar-element" onClick={() => setView("account")}>Mi cuenta</div>
           <div className="sidebar-element" onClick={() => setView("updateUser")}>Editar perfil</div>
           <div className="sidebar-element" onClick={() => setView("deposit")}>Depositar</div>

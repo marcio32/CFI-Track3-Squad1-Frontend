@@ -7,18 +7,26 @@ export const getAccount = async (userId) => {
     return response.data;
 }
 
-export const getAllAccounts = async () => {
-    const response = await axios.get(`${urlBase}Account`);
+export const getAllAccounts = async (token) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    const response = await axios.get(`${urlBase}Account`, { headers});
     return response.data;
 }
 
-export const deleteAccount = async (accountId) => {
-    const response = await axios.delete(`${urlBase}Account/${accountId}`);
+export const deleteAccount = async (accountId, token ) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    const response = await axios.delete(`${urlBase}Account/${accountId}`, { headers });
     return response.data;
 }
 
-export const editAccount = async (accountId, accountData) => {
-    console.log(accountData)
-    const response = await axios.put(`${urlBase}Account/${accountId}`, accountData);
+export const editAccount = async (accountId, accountData, token) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    const response = await axios.put(`${urlBase}Account/${accountId}`, accountData, { headers });
     return response.data;
 }

@@ -3,54 +3,44 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/AuthContext";
 
 export const Transfer = () => {
-  const { userData } = useContext(AuthContext);
+  const { userData, isLogged: { jwt } } = useContext(AuthContext);
 
   const [myAccountId, setMyAccountId] = useState("");
   const [myAmount, setMyAmount] = useState(0);
-  // const [remoteAccount, setRemoteAccount] = useState("");
-  // const [transferAmount, setTransferAmount] = useState(0);
   const [transferData, setTransferData] = useState({
     accountReceptorId: 0,
     money: 0,
   });
 
   useEffect(() => {
-    try {
-      axios
-        .get(`https://localhost:7067/api/account/details/${userData.userId}`)
-        .then((response) => {
-          setMyAccountId(response.data.data.id);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      axios
-        .get(`https://localhost:7067/api/account/${myAccountId}`)
-        .then((response) => {
-          setMyAmount(response.data.data.money);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } catch (error) {
-      console.error(error);
+    const headers = {
+      'Authorization': `Bearer ${jwt}`
     }
-  }, [myAmount]);
 
-  // const onRemoteAccountChange = (e) => {
-  //   setRemoteAccount(e.target.value);
-  // };
+    axios.get(`https://localhost:7067/api/account/details/${userData.userId}`, { headers })
+      .then((response) => {
+        const accountId = response.data.data.id;
+        setMyAccountId(accountId);
+        return axios.get(`https://localhost:7067/api/account/${accountId}`, { headers });
+      })
+      .then((response) => {
+        setMyAmount(response.data.data.money);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [jwt, userData]);
 
-  // const onTransferAmountChange = (e) => {
-  //   setTransferAmount(e.target.value);
-  // };
   const onTransferDataChange = (e) => {
     setTransferData({ ...transferData, [e.target.id]: e.target.value });
   };
 
   const onTransferSubmitt = async () => {
+    const headers = {
+      'Authorization': `Bearer ${jwt}`
+    }
     try {
-      await axios.post(`https://localhost:7067/api/Account/transfer/${myAccountId}`, transferData);
+      await axios.post(`https://localhost:7067/api/Account/transfer/${myAccountId}`, transferData, { headers });
       alert("Transferencia realizada con éxito.");
     } catch (error) {
       console.error(error);

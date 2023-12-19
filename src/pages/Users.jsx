@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Spinner } from "react-bootstrap";
 
 import { deleteUser, getUsers } from "../selectors/userSerivces.mjs";
@@ -8,8 +8,12 @@ import { formatDate } from "../helpers/formatedDate";
 
 import { UserCard } from "../components/cards/UserCards";
 import { CustomModal } from "../components/modal/CustomModal";
+import { AuthContext } from "../auth/AuthContext";
 
 export const Users = () => {
+
+    const { isLogged } = useContext(AuthContext);
+
     const [users, setUsers] = useState([]);
     const [hasError, setHasError] = useState(null);
     const [hasAccount, setHasAccount] = useState();
@@ -30,14 +34,14 @@ export const Users = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await getUsers();
+                const data = await getUsers(isLogged.jwt);
                 setUsers(data.data);
             } catch (err) {
                 setHasError(true);
             }
         };
         fetchData();
-    }, []);
+    }, [isLogged]);
 
     const handleDeleteUser = async () => {
         try {
