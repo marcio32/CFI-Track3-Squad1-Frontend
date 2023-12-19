@@ -1,45 +1,39 @@
-body .navbar {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    background-color: #ff686bd2;
     height: 90px;
+    /*border-bottom: #ff686b  2px solid;
+    background-color: #edf2fb; */
 
-    border-bottom: #ff686b  2px solid;
-    background-color: #edf2fb;    
 }
 
-body .navbar .right-side a {
-    margin: 0 15px;
-
-    font-size: 1.5em;
-    text-decoration:none;
-    color: #ff686b;
+.left-side {
+    height: 100%;
+    object-fit: contain;
+    margin-left: 4rem;
 }
 
-body .navbar a .firstCircle {
-    height: 65px;
-    width: 13px;
-    border-radius: 50px;
-
-    position: absolute;
-    transform: translate(285%, -65%) rotate(230deg);
-    
-    background-color: #ff686b;
+.right-side {
+    font-size: 1.2rem;
+    margin-right: 3rem;
+    padding: 5px 10px;
+    border: 2px solid #edf2fb;
+    /* border: 2px solid #ff686b ;*/
+    border-radius: 20px;
+    transition: all .3s ease;
 }
 
-body .navbar a .secondCircle {
-    height: 65px;
-    width: 13px;
-    border-radius: 50px;
-
-    position: absolute;
-    transform: translate(285%, -65%) rotate(130deg);
-    
-    background-color: #ff686b;
+.right-side:hover {
+    box-shadow: 2px 2px 2px #edf2fb;
+    transition: all .3s ease;
 }
 
+.link-login-nav {
+    color: #edf2fb;
+}
 
-body .navbar div {
-    margin: 15px
+.logo {
+    height: 100%;
 }

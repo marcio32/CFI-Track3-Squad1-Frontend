@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useUser } from "../../hooks/useUser"
 import { Spinner } from "react-bootstrap";
 import "../../assets/login.css";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
 
@@ -28,18 +29,27 @@ export const Login = () => {
         <>
             <section className="login">
                 <form onSubmit={handleSubmitLogin}>
-                    <label htmlFor="email">Email</label>
-                    <input id="email" type="text" name="email" value={userData.email} onChange={handleInputChange} />
-                    <label htmlFor="password">Contraseña</label>
-                    <input id="password" type="password" name="password" value={userData.password} onChange={handleInputChange} />
+                    <label className="label-login" htmlFor="email">Email</label>
+                    <input className="input-login" id="email" type="text" name="email" value={userData.email} onChange={handleInputChange} />
+                    <label className="label-login" htmlFor="password">Contraseña</label>
+                    <input className="input-login" id="password" type="password" name="password" value={userData.password} onChange={handleInputChange} />
                     {isLoading.loading ?
                         <Spinner /> :
                         <button>Iniciar sesion </button>
                     }
-                    {isLoading.status === 401 ? "Usuario o contraseña incorrectos" : isLoading.status}
+                    <p className="error-login-message">
+                        {isLoading.status === 401 ? "Usuario o contraseña incorrectos" : isLoading.status}
+                    </p>
                 </form>
+                <p className="register-p-link"> ¿No tiene una cuenta? <Link to="/register">Registrese</Link>
+                </p>
             </section>
-
+            <section className="login-image">
+                <h1 className="login-main-title">
+                    El poder de tener todo en un solo lugar
+                </h1>
+                <div className="border-text"></div>
+            </section>
         </>
     )
 }
